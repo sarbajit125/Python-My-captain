@@ -1,0 +1,23 @@
+import csv
+
+def info_into_csv(info_list):
+    with open("student_inof.csv",'a',newline='')as csv_file:
+        writer=csv.writer(csv_file)
+        if csv_file.tell()==0:
+            writer.writerow(["Name","Age","Contact No.","Email-id"])
+        writer.writerow(info_list)
+
+n=int(input("Enter total no entries "))
+i=1
+while(i<=n):
+    student_info=input("Enter student #{} information in format(Name Age Contact No. Email-id)\n".format(i))
+    student_info_list=student_info.split(' ')
+    print(student_info_list)
+    print("The information enter above is :\nName:{}\nAge:{}\nContact No.:{}\nEmail-id:{}".format(student_info_list[0],student_info_list[1],student_info_list[2],student_info_list[3]))
+    check1=input("Is the above information correct Enter (Y/N) ")
+    if(check1.upper()=="Y"):
+        print("Thank you information registered\n")
+        info_into_csv(student_info_list)
+        i=i+1
+    elif(check1.upper()=="N"):
+        print("Enter the information again")
